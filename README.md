@@ -15,3 +15,9 @@ Assuming the above prerequisites exists, the following will install all dependen
 ```
 $ make build
 ```
+
+## Runtime Instructions
+To run the application after its been built, simply execute the build artifact produced from the build step:
+```
+$ ./go-producer-api
+```
