@@ -8,10 +8,14 @@ This application serves as an API allowing clients to publish data through a pub
   <img height="50" src="https://kafka.apache.org/images/logo.png"/>
 </a>
 
-## Build Instructions
-Building the application requires `go` and the appropriately defined `$GOPATH` env variable with its appropriate directory structure. See [here](https://golang.org/doc/code.html#GOPATH) for more details.
+## Dependencies
+Building and running the application requires the following:
+- An installation of `go`
+- An appropriately defined `$GOPATH` environment variable as per [these instructions](https://golang.org/doc/code.html#GOPATH)
+- A directory hierarchy under `$GOPATH` consistent with [these instructions](https://golang.org/doc/code.html#Workspaces)
 
-Assuming the above prerequisites exists, the following will install all dependencies and create the `go-producer-api` executable:
+## Build Instructions
+The following step(s) will install all application dependencies and create the `go-producer-api` executable:
 ```
 $ make build
 ```
