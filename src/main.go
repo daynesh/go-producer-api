@@ -34,6 +34,7 @@ type PublisherPayload struct {
 func main() {
 	fmt.Println("Starting go-producer-api")
 
+    // Instantiate an Engine instance
 	router := gin.Default()
     config := sarama.NewConfig()
     producer, err := sarama.NewAsyncProducer([]string{"localhost:9092"}, config)
@@ -41,6 +42,7 @@ func main() {
         panic(err)
     }
 
+    // Route definitions
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "pong"})
 	})
