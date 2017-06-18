@@ -3,15 +3,15 @@ GLIDE_EXE=$(GOPATH)/bin/glide
 # Identify current project name
 APPNAME=$(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
 
-default: build
+default: install build
 
 clean:
 	rm -rf vendor
 	rm -f $(APPNAME)
 	rm -f $(GOPATH)/bin/glide
 
-build: install
-	go build -o $(APPNAME) src/main.go
+build:
+	go build -o $(APPNAME) src/*.go
 
 install: clean glide
 	$(GLIDE_EXE) install
