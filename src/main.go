@@ -1,20 +1,20 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 
-	"gopkg.in/gin-gonic/gin.v1"
+    "gopkg.in/gin-gonic/gin.v1"
 )
 
 func main() {
-	fmt.Println("Starting go-producer-api")
+    fmt.Println("Starting go-producer-api")
 
     // Instantiate an Engine instance
-	router := gin.Default()
+    router := gin.Default()
 
     // Route definitions
-	router.GET("/ping", ping)
+    router.GET("/ping", ping)
     router.POST("/publish", publishMessage)
 
-	router.Run()
+    router.Run()
 }
