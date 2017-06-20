@@ -26,12 +26,12 @@ func publishMessage(c *gin.Context) {
         //  - Need to close connections when done with publisher
         var err error
         if publisher == nil {
-            publisher, err = newPublisher()
+            publisher, err = NewPublisher()
         }
 
         if err == nil {
             // Now publish message
-            err = publisher.publish(input)
+            err = publisher.Publish(input)
         }
 
         // Handle errors that occurred in either creating a new publisher

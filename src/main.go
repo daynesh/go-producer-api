@@ -9,6 +9,9 @@ import (
 func main() {
     fmt.Println("Starting go-producer-api")
 
+    // Load config values
+    config.Load()
+
     // Instantiate an Engine instance
     router := gin.Default()
 

@@ -12,11 +12,9 @@ type Publisher struct {
 }
 
 // Instantiate a new Publisher instance
-func newPublisher() (*Publisher, error) {
-    config := sarama.NewConfig()
-
+func NewPublisher() (*Publisher, error) {
     // Try instantiating a producer
-    producer, err := sarama.NewAsyncProducer([]string{"localhost:9092"}, config)
+    producer, err := sarama.NewAsyncProducer(config.BrokerAddresses, sarama.NewConfig())
     if err != nil {
         return nil, err
     }
@@ -38,7 +36,7 @@ func (p *Publisher) handleAsyncErrors() {
 }
 
 // Publish message asynchronously
-func (p *Publisher) publish(msg PublisherPayload) error {
+func (p *Publisher) Publish(msg PublisherPayload) error {
     // Serialize the message first
     serializedInput, err := json.Marshal(msg)
     if err == nil {
