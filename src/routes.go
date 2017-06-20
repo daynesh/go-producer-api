@@ -1,8 +1,6 @@
 package main
 
 import (
-    "fmt"
-
     "gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -15,6 +13,10 @@ func ping(c *gin.Context) {
 
 // Publish message from request body
 func publishMessage(c *gin.Context) {
+    // Default response info to return
+    responseCode := 500
+    jsonResponse := gin.H{}
+
     // Gather input params
     var input PublisherPayload
     if c.BindJSON(&input) == nil {
@@ -24,20 +26,23 @@ func publishMessage(c *gin.Context) {
         //  - Need to close connections when done with publisher
         var err error
         if publisher == nil {
-            publisher, err = NewPublisher()
-            if err != nil {
-                c.JSON(500, gin.H{"code": 500, "message": "Internal Server Error", "description": err.Error()})
-            }
+            publisher, err = newPublisher()
         }
 
-        // Now publish message
-        err = publisher.publish(input)
         if err == nil {
-            c.JSON(200, gin.H{
-                "status": "OK",
-            })
+            // Now publish message
+            err = publisher.publish(input)
+        }
+
+        // Handle errors that occurred in either creating a new publisher
+        // OR publishing a message
+        if err != nil {
+            jsonResponse = gin.H{"code": 500, "message": "Internal Server Error", "description": err.Error()}
         } else {
-            fmt.Println("error: ", err)
+            responseCode = 200
+            jsonResponse = gin.H{"status": "OK"}
         }
     }
+
+    c.JSON(responseCode, jsonResponse)
 }
