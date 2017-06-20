@@ -41,7 +41,7 @@ func (p *Publisher) Publish(msg PublisherPayload) error {
     serializedInput, err := json.Marshal(msg)
     if err == nil {
         message := &sarama.ProducerMessage{
-            Topic: msg.Header.Type,
+            Topic: msg.Header.Topic,
             Value: sarama.ByteEncoder(serializedInput),
         }
 
