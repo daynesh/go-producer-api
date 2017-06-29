@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/daynesh/go-producer-api)](https://goreportcard.com/report/github.com/daynesh/go-producer-api)
+
 # Producer API
 This application serves as an API allowing clients to publish data through a pub/sub messaging queue.  It utilizes the following technologies:
 
