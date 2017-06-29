@@ -1,15 +1,15 @@
 package controllers
 
 import (
-    "gopkg.in/gin-gonic/gin.v1"
+	"gopkg.in/gin-gonic/gin.v1"
 )
 
-type PingController struct {}
+type PingController struct{}
 
 func GetPingController() *PingController {
-    return &PingController{}
+	return &PingController{}
 }
 
 func (pc *PingController) Ping(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
+	c.JSON(200, gin.H{"message": "pong"})
 }

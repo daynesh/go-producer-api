@@ -1,57 +1,57 @@
 package publishers
 
 import (
-    "fmt"
-    "encoding/json"
+	"encoding/json"
+	"fmt"
 
-    "github.com/daynesh/go-producer-api/src/config"
-    "github.com/daynesh/go-producer-api/src/requests"
-    "gopkg.in/Shopify/sarama.v1"
+	"github.com/daynesh/go-producer-api/src/config"
+	"github.com/daynesh/go-producer-api/src/requests"
+	"gopkg.in/Shopify/sarama.v1"
 )
 
 type Publisher struct {
-    producer sarama.AsyncProducer
+	producer sarama.AsyncProducer
 }
 
 // Instantiate a new Publisher instance
 func NewPublisher(config *config.ConfigManager) (*Publisher, error) {
-    // Try instantiating a producer
-    producer, err := sarama.NewAsyncProducer(config.BrokerAddresses, sarama.NewConfig())
-    if err != nil {
-        return nil, err
-    }
+	// Try instantiating a producer
+	producer, err := sarama.NewAsyncProducer(config.BrokerAddresses, sarama.NewConfig())
+	if err != nil {
+		return nil, err
+	}
 
-    // Now instantiate a Publisher instance
-    publisher := &Publisher{producer}
+	// Now instantiate a Publisher instance
+	publisher := &Publisher{producer}
 
-    // Listen for errors and handle accordingly
-    go publisher.handleAsyncErrors()
+	// Listen for errors and handle accordingly
+	go publisher.handleAsyncErrors()
 
-    return publisher, nil
+	return publisher, nil
 }
 
 // Handle publish errors from producer's error output channel
 func (p *Publisher) handleAsyncErrors() {
-    for err := range p.producer.Errors() {
-        fmt.Println("Publish error detected: ", err)
-    }
+	for err := range p.producer.Errors() {
+		fmt.Println("Publish error detected: ", err)
+	}
 }
 
 // Publish message asynchronously
 func (p *Publisher) Publish(msg requests.PublisherRequest) error {
-    // Serialize the message first
-    serializedInput, err := json.Marshal(msg)
-    if err == nil {
-        message := &sarama.ProducerMessage{
-            Topic: msg.Header.Topic,
-            Value: sarama.ByteEncoder(serializedInput),
-        }
+	// Serialize the message first
+	serializedInput, err := json.Marshal(msg)
+	if err == nil {
+		message := &sarama.ProducerMessage{
+			Topic: msg.Header.Topic,
+			Value: sarama.ByteEncoder(serializedInput),
+		}
 
-        // Now send message to producer input channel
-        // TODO: How exactly do we handle errors?
-        p.producer.Input() <- message
-        return nil
-    } else {
-        return err
-    }
+		// Now send message to producer input channel
+		// TODO: How exactly do we handle errors?
+		p.producer.Input() <- message
+		return nil
+	} else {
+		return err
+	}
 }
