@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("Starting go-producer-api")
 
 	// Load config values
-	var config = &config.ConfigManager{}
+	var config = &config.Manager{}
 	config.Load()
 
 	// Instantiate an Engine instance

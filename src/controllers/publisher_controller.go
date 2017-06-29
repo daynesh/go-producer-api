@@ -10,16 +10,19 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
+// PublishController includes config params, a publisher and this
+// controllers associated handlers
 type PublishController struct {
-	Config    *config.ConfigManager
+	Config    *config.Manager
 	Publisher *publishers.Publisher
 }
 
-func GetPublishController(config *config.ConfigManager) *PublishController {
+// GetPublishController returns a new PublishController
+func GetPublishController(config *config.Manager) *PublishController {
 	return &PublishController{Config: config}
 }
 
-// Publish message from request body
+// PublishMessage publishes a message specified in the request body
 func (pc *PublishController) PublishMessage(c *gin.Context) {
 	// Default response info to return
 	responseCode := http.StatusInternalServerError

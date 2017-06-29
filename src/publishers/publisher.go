@@ -9,12 +9,13 @@ import (
 	"gopkg.in/Shopify/sarama.v1"
 )
 
+// Publisher provides a means of publishing data to a topic
 type Publisher struct {
 	producer sarama.AsyncProducer
 }
 
-// Instantiate a new Publisher instance
-func NewPublisher(config *config.ConfigManager) (*Publisher, error) {
+// NewPublisher instantiate a new Publisher instance
+func NewPublisher(config *config.Manager) (*Publisher, error) {
 	// Try instantiating a producer
 	producer, err := sarama.NewAsyncProducer(config.BrokerAddresses, sarama.NewConfig())
 	if err != nil {
@@ -51,7 +52,7 @@ func (p *Publisher) Publish(msg requests.PublisherRequest) error {
 		// TODO: How exactly do we handle errors?
 		p.producer.Input() <- message
 		return nil
-	} else {
-		return err
 	}
+
+	return err
 }

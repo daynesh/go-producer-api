@@ -4,12 +4,13 @@ import (
 	"github.com/kelseyhightower/envconfig"
 )
 
-type ConfigManager struct {
+// Manager contains all config params
+type Manager struct {
 	BrokerAddresses []string
 }
 
 // Load configuration values
-func (c *ConfigManager) Load() error {
+func (c *Manager) Load() error {
 	// First, set default values
 	c.BrokerAddresses = []string{"localhost:9092"}
 
