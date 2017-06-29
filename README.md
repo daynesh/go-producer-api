@@ -17,7 +17,7 @@ Building and running the application requires the following:
 ## Build Instructions
 The following step(s) will install all application dependencies and create the `go-producer-api` executable:
 ```
-$ make build
+$ make
 ```
 
 ## Runtime Instructions
