@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
     "github.com/kelseyhightower/envconfig"
@@ -7,8 +7,6 @@ import (
 type ConfigManager struct {
     BrokerAddresses []string
 }
-
-var config *ConfigManager = &ConfigManager{}
 
 // Load configuration values
 func (c *ConfigManager) Load() error {

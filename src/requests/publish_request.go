@@ -1,4 +1,4 @@
-package main
+package requests
 
 import (
     "encoding/json"
@@ -6,7 +6,7 @@ import (
 
 type Header struct {
     Timestamp int64     `json:"timestamp" binding:"required"`
-    Topic      string    `json:"topic" binding:"required"`        // Topic name
+    Topic     string    `json:"topic" binding:"required"`        // Topic name
 }
 
 /* Payload should contain the following structure
@@ -18,7 +18,7 @@ type Header struct {
         }
     }
 */
-type PublisherPayload struct {
+type PublisherRequest struct {
     Header  Header           `json:"header" binding:"required"`
     Body    *json.RawMessage `json:"body" binding:"required"`
 }

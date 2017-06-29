@@ -1,9 +1,11 @@
-package main
+package publishers
 
 import (
     "fmt"
     "encoding/json"
 
+    "github.com/daynesh/go-producer-api/src/config"
+    "github.com/daynesh/go-producer-api/src/requests"
     "gopkg.in/Shopify/sarama.v1"
 )
 
@@ -12,7 +14,7 @@ type Publisher struct {
 }
 
 // Instantiate a new Publisher instance
-func NewPublisher() (*Publisher, error) {
+func NewPublisher(config *config.ConfigManager) (*Publisher, error) {
     // Try instantiating a producer
     producer, err := sarama.NewAsyncProducer(config.BrokerAddresses, sarama.NewConfig())
     if err != nil {
@@ -36,7 +38,7 @@ func (p *Publisher) handleAsyncErrors() {
 }
 
 // Publish message asynchronously
-func (p *Publisher) Publish(msg PublisherPayload) error {
+func (p *Publisher) Publish(msg requests.PublisherRequest) error {
     // Serialize the message first
     serializedInput, err := json.Marshal(msg)
     if err == nil {
