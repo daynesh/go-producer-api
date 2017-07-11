@@ -26,8 +26,8 @@ install: clean glide
 glide:
 	go get github.com/Masterminds/glide
 
-.PHONY: tests_unit
-tests_unit:
+.PHONY: tests
+tests:
 	go test ./test/...
 
 .SILENT: clean

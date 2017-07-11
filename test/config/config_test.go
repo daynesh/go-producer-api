@@ -12,3 +12,11 @@ func TestConfigInstantiation(t *testing.T) {
 
     assert.Equal(t, 0, len(config.BrokerAddresses))
 }
+
+func TestLoadConfig(t *testing.T) {
+    var config = &config.Manager{}
+
+    config.Load()
+
+    assert.Equal(t, []string{"localhost:9092"}, config.BrokerAddresses)
+}
