@@ -3,6 +3,11 @@ language: go
 go:
     - 1.8.x
 
-install: make install
+install:
+    - make install
 
-script: make tests
+script:
+    - make tests
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
