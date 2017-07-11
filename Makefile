@@ -16,7 +16,7 @@ clean:
 
 .PHONY: build
 build:
-	@cd ${GOREPO}/src && go build -o $(APPNAME) main.go && mv $(APPNAME) ${GOREPO}
+	@cd ${GOREPO}/src && go build -o ${GOREPO}/$(APPNAME) main.go
 
 .PHONY: install
 install: clean glide
@@ -25,5 +25,9 @@ install: clean glide
 .PHONY: glide
 glide:
 	go get github.com/Masterminds/glide
+
+.PHONY: tests_unit
+tests_unit:
+	go test ./test/...
 
 .SILENT: clean
