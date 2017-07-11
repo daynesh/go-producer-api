@@ -1,4 +1,4 @@
-[![build status](https://travis-ci.org/daynesh/go-producer-api.svg?branch=master)]
+[![build status](https://travis-ci.org/daynesh/go-producer-api.svg?branch=master)](https://travis-ci.org/daynesh/go-producer-api.svg?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/daynesh/go-producer-api)](https://goreportcard.com/report/github.com/daynesh/go-producer-api)
 
 # Producer API
