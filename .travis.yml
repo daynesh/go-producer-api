@@ -7,8 +7,7 @@ install:
     - make install
 
 script:
-    - make tests
-    - ./test-coverage.sh
+    - make testcoverage # Runs unit tests & code coverage
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
