@@ -8,6 +8,7 @@ install:
 
 script:
     - make tests
+    - ./test-coverage.sh
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
