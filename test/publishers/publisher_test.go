@@ -8,13 +8,14 @@ import (
     "github.com/stretchr/testify/assert"
 )
 
-func TestNewPublisher(t *testing.T) {
-    var publisher *publishers.Publisher
+func TestNewPublisherWithNoBrokers(t *testing.T) {
     var err error
     var config = &config.Manager{}
+    config.Load()
 
-    publisher, err = publishers.NewPublisher(config)
+    // Actual test
+    _, err = publishers.NewPublisher(config)
 
-    assert.Equal(t, publisher, nil)
-    assert.Equal(t, err, nil)
+    // Now verify results
+    assert.Equal(t, err.Error(), "kafka: client has run out of available brokers to talk to (Is your cluster reachable?)")
 }

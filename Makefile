@@ -28,6 +28,10 @@ glide:
 
 .PHONY: tests
 tests:
-	go test ./test/...
+	go test ./test/... -v
+
+.PHONY: testcoverage
+testcoverage:
+	./test-coverage.sh
 
 .SILENT: clean
