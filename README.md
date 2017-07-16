@@ -1,5 +1,7 @@
 [![build status](https://travis-ci.org/daynesh/go-producer-api.svg?branch=master)](https://travis-ci.org/daynesh/go-producer-api.svg?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/daynesh/go-producer-api)](https://goreportcard.com/report/github.com/daynesh/go-producer-api)
+[![codecov](https://codecov.io/gh/daynesh/go-producer-api/branch/master/graph/badge.svg)](https://codecov.io/gh/daynesh/go-producer-api)
+
 
 # Producer API
 This application serves as an API allowing clients to publish data through a pub/sub messaging queue.  It utilizes the following technologies:
