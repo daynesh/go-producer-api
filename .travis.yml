@@ -7,7 +7,7 @@ install:
     - make install
 
 script:
-    - ! gofmt -d src test 2>&1 | read
+    - ./.travis.gofmt.sh
     - make testcoverage # Runs unit tests & code coverage
 
 after_success:
