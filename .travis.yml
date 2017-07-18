@@ -7,7 +7,7 @@ install:
     - make install
 
 script:
-    - test -z $(gofmt -s -l src)
+    - test -z $(gofmt -s -l src test)
     - make testcoverage # Runs unit tests & code coverage
 
 after_success:
