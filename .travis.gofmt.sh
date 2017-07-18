@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 if [ -n "$(gofmt -l src test)" ]; then
-    echo "Go code is not formatted:"
+    echo -e "${RED}Go code is not formatted:"
     gofmt -l src test
     exit 1
 fi
