@@ -6,8 +6,10 @@ go:
 install:
     - make install
 
-script:
+before_script:
     - ./.travis.gofmt.sh # Fail if .go file hasn't been formatted with gofmt
+
+script:
     #- ./.travis.govet.sh
     #- ./.travis.golint.sh
     - make testcoverage  # Runs unit tests & code coverage
