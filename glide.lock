@@ -1,5 +1,5 @@
-hash: ef3dd7524a87a7ae460733a8492774d43b5648135db2054df98d160401087b46
-updated: 2017-07-11T02:35:10.958563589Z
+hash: 8e6fecc4179adf344e7c93782de946b6e5486e6f36fadab8b8f789b5e8231e5b
+updated: 2017-07-19T23:18:49.893881704-04:00
 imports:
 - name: github.com/davecgh/go-spew
   version: 782f4967f2dc4564575ca782fe2d04090b5faca8
@@ -60,4 +60,8 @@ imports:
   version: c01858abb625b73a3af51d0798e4ad42c8147093
 - name: gopkg.in/yaml.v2
   version: cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b
-testImports: []
+testImports:
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
