@@ -6,7 +6,7 @@ NC='\033[0m' # No Color
 
 if [ -n "$(go tool vet src 2>&1)" ]; then
     echo -e "${RED}vet errors found:"
-    for i in `go tool vet src`; do echo $i; done
+    go tool vet src
     echo -e "${NC}"
     exit 1
 fi

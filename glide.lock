@@ -20,10 +20,6 @@ imports:
   subpackages:
   - binding
   - render
-- name: github.com/golang/lint
-  version: c5fb716d6688a859aae56d26d3e6070808df29f7
-  subpackages:
-  - golint
 - name: github.com/golang/protobuf
   version: 6a1fa9404c0aebf36c879bc50152edcc953910d2
   subpackages:
