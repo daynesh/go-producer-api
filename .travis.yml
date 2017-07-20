@@ -7,12 +7,12 @@ install:
     - make install
 
 before_script:
-    - ./.travis.gofmt.sh # Fail if .go file hasn't been formatted with gofmt
+    - ./.travis.gofmt.sh  # Fail if .go file hasn't been formatted with gofmt
+    - ./.travis.govet.sh  # go vet source code
+    - ./.travis.golint.sh # golint all source code
 
 script:
-    #- ./.travis.govet.sh
-    #- ./.travis.golint.sh
-    - make testcoverage  # Runs unit tests & code coverage
+    - make testcoverage   # Runs unit tests & code coverage
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
