@@ -4,6 +4,8 @@ set -e
 RED='\033[0;1;31m'
 NC='\033[0m' # No Color
 
+go get github.com/golang/lint/golint
+
 if [ -n "$(golint ./src/... 2>&1)" ]; then
     echo -e "${RED}golint detected problems:"
     golint ./src/...
