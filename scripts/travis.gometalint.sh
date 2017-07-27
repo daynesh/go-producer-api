@@ -7,10 +7,10 @@ NC='\033[0m' # No Color
 go get gopkg.in/alecthomas/gometalinter.v1
 gometalinter.v1 --install
 
-OUTPUT="$(gometalinter.v1 ./src/... -D gotype --deadline=180s 2>&1)"
+OUTPUT="$(gometalinter.v1 ./src/... -D gotype --deadline=300s 2>&1)"
 if [ -n "${OUTPUT}" ]; then
     echo -e "${RED}gometalinter detected problems:"
-    echo $OUTPUT
+    echo "${OUTPUT}"
     echo -e "${NC}"
     exit 1
 fi
