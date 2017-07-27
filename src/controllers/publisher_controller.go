@@ -49,7 +49,7 @@ func (pc *PublishController) PublishMessage(c *gin.Context) {
 		// OR publishing a message
 		if err != nil {
 			jsonResponse = gin.H{
-				"code": http.StatusInternalServerError,
+				"code":        http.StatusInternalServerError,
 				"message":     "Internal Server Error",
 				"description": err.Error(),
 			}
@@ -60,8 +60,8 @@ func (pc *PublishController) PublishMessage(c *gin.Context) {
 	} else {
 		responseCode = http.StatusBadRequest
 		jsonResponse = gin.H{
-			"code":    http.StatusBadRequest,
-			"message": "Bad Request",
+			"code":        http.StatusBadRequest,
+			"message":     "Bad Request",
 			"description": err.Error(),
 		}
 	}
