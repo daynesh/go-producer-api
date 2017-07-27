@@ -26,16 +26,16 @@ func GetPublishController(config *config.Manager) *PublishController {
 func (pc *PublishController) PublishMessage(c *gin.Context) {
 	// Default response info to return
 	responseCode := http.StatusInternalServerError
-	jsonResponse := gin.H{}
+	var jsonResponse gin.H
 
 	// Gather input params
 	var input requests.PublisherRequest
-	if err := binding.JSON.Bind(c.Request, &input); err == nil {
+	var err error
+	if err = binding.JSON.Bind(c.Request, &input); err == nil {
 
 		// TODOs:
 		//  - Need to add support for thread safety!
 		//  - Need to close connections when done with publisher
-		var err error
 		if pc.Publisher == nil {
 			pc.Publisher, err = publishers.NewPublisher(pc.Config)
 		}
@@ -48,7 +48,8 @@ func (pc *PublishController) PublishMessage(c *gin.Context) {
 		// Handle errors that occurred in either creating a new publisher
 		// OR publishing a message
 		if err != nil {
-			jsonResponse = gin.H{"code": http.StatusInternalServerError,
+			jsonResponse = gin.H{
+				"code":        http.StatusInternalServerError,
 				"message":     "Internal Server Error",
 				"description": err.Error(),
 			}
@@ -59,8 +60,9 @@ func (pc *PublishController) PublishMessage(c *gin.Context) {
 	} else {
 		responseCode = http.StatusBadRequest
 		jsonResponse = gin.H{
-			"code":    http.StatusBadRequest,
-			"message": err.Error(),
+			"code":        http.StatusBadRequest,
+			"message":     "Bad Request",
+			"description": err.Error(),
 		}
 	}
 

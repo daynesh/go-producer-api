@@ -13,6 +13,7 @@ clean:
 	rm -rf vendor
 	rm -f ${APPNAME}
 	rm -f ${GOPATH}/bin/glide
+	rm -f ${GOPATH}/bin/gometalinter.v1
 
 .PHONY: build
 build:
@@ -32,6 +33,6 @@ tests:
 
 .PHONY: testcoverage
 testcoverage:
-	./test-coverage.sh
+	./scripts/test-coverage.sh
 
 .SILENT: clean

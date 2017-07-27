@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/controllers"
@@ -13,7 +14,12 @@ func main() {
 
 	// Load config values
 	var config = &config.Manager{}
-	config.Load()
+	err := config.Load()
+	if err != nil {
+		// @todo Move to using a real logger with support for log levels
+		fmt.Println("Error loading configs")
+		os.Exit(1)
+	}
 
 	// Instantiate an Engine instance
 	router := gin.Default()
@@ -26,5 +32,8 @@ func main() {
 	router.GET("/ping", pingController.Ping)
 	router.POST("/publish", publishController.PublishMessage)
 
-	router.Run()
+	err = router.Run()
+	if err != nil {
+		fmt.Println("Error executing router")
+	}
 }
