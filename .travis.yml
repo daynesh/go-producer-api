@@ -2,9 +2,11 @@ language: go
 
 go:
     - 1.8.x
+    - tip
 
 install:
     - make install
+    - go get github.com/mattn/goveralls
 
 before_script:
     - ./scripts/travis.gofmt.sh        # Fail if .go file hasn't been formatted with gofmt
@@ -13,6 +15,7 @@ before_script:
 
 script:
     - make testcoverage         # Runs unit tests & code coverage
+    - goveralls -service=travis-ci
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
