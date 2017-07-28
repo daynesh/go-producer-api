@@ -11,10 +11,10 @@ install:
 before_script:
     - ./scripts/travis.gofmt.sh        # Fail if .go file hasn't been formatted with gofmt
     - ./scripts/travis.govet.sh        # go vet source code
-    - ./scripts/travis.gometalint.sh   # gometalint all source code
+    #- ./scripts/travis.gometalint.sh   # gometalint all source code
 
 script:
-    #- make testcoverage         # Runs unit tests & code coverage
+    - make testcoverage         # Runs unit tests & code coverage
     - cd src && goveralls -service=travis-ci
 
 after_success:
