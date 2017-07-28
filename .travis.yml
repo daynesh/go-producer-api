@@ -14,8 +14,8 @@ before_script:
     - ./scripts/travis.gometalint.sh   # gometalint all source code
 
 script:
-    - make testcoverage         # Runs unit tests & code coverage
-    - goveralls -service=travis-ci
+    #- make testcoverage         # Runs unit tests & code coverage
+    - cd src && goveralls -service=travis-ci
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
