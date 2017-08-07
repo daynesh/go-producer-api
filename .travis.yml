@@ -1,7 +1,7 @@
 language: go
 
 go:
-    - 1.8.x
+    - tip
 
 install:
     - make install
@@ -12,7 +12,8 @@ before_script:
     - ./scripts/travis.gometalint.sh   # gometalint all source code
 
 script:
-    - make testcoverage         # Runs unit tests & code coverage
+    - make tests                        # Runs unit tests
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+    - ./scripts/generate-test-coverage.sh --codecov
+    - ./scripts/generate-test-coverage.sh --coveralls
