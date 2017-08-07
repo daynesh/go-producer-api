@@ -34,6 +34,7 @@ show_cover_report() {
 }
 
 push_to_coveralls() {
+    go get github.com/mattn/goveralls
     echo "Pushing coverage statistics to coveralls.io"
     goveralls -coverprofile="$profile"
 }

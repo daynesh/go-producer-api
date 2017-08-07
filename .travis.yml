@@ -5,7 +5,6 @@ go:
 
 install:
     - make install
-    - go get github.com/mattn/goveralls
 
 before_script:
     - ./scripts/travis.gofmt.sh        # Fail if .go file hasn't been formatted with gofmt

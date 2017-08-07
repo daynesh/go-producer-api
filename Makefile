@@ -33,6 +33,6 @@ tests:
 
 .PHONY: testcoverage
 testcoverage:
-	./scripts/test-coverage.sh
+	./scripts/generate-test-coverage.sh
 
 .SILENT: clean
