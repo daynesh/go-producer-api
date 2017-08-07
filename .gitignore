@@ -3,3 +3,4 @@ vendor/
 go-producer-api
 coverage.txt
 indivprofile.out
+.cover

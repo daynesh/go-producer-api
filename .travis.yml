@@ -10,11 +10,11 @@ install:
 before_script:
     - ./scripts/travis.gofmt.sh        # Fail if .go file hasn't been formatted with gofmt
     - ./scripts/travis.govet.sh        # go vet source code
-    #- ./scripts/travis.gometalint.sh   # gometalint all source code
+    - ./scripts/travis.gometalint.sh   # gometalint all source code
 
 script:
-    - make testcoverage         # Runs unit tests & code coverage
-    - cd src && goveralls -coverprofile=../coverage.out -service=travis-ci
+    - make tests                        # Runs unit tests
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+    - ./scripts/generate-test-coverage.sh --codecov
+    - ./scripts/generate-test-coverage.sh --coveralls
