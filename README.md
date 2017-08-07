@@ -31,3 +31,21 @@ To run the application after its been built, simply execute the build artifact p
 ```
 $ ./go-producer-api
 ```
+
+## Test Execution & Code Coverage Analysis
+To run all unit tests, execute the following:
+```
+$ make tests
+```
+
+You can also generate code coverage reports as well.
+
+For HTML output:
+```
+$ ./scripts/generate-test-coverage.sh --html
+```
+
+For text output to sdtout:
+```
+$ ./scripts/generate-test-coverage.sh
+```
