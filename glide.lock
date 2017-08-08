@@ -1,10 +1,12 @@
-hash: 8e6fecc4179adf344e7c93782de946b6e5486e6f36fadab8b8f789b5e8231e5b
-updated: 2017-07-19T23:18:49.893881704-04:00
+hash: d43fb314d87fa58e671bfc95d4a89afbfb5d502cdfa89c8592a8ea8b574860b6
+updated: 2017-08-08T12:48:43.069825725-04:00
 imports:
 - name: github.com/davecgh/go-spew
-  version: 782f4967f2dc4564575ca782fe2d04090b5faca8
+  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
   subpackages:
   - spew
+- name: github.com/docopt/docopt-go
+  version: 784ddc588536785e7299f7272f39101f7faccc3f
 - name: github.com/eapache/go-resiliency
   version: b1fe83b5b03f624450823b751b662259ffc6af70
   subpackages:
@@ -32,6 +34,8 @@ imports:
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/mattn/go-isatty
   version: fc9e8d8ef48496124e79ae0df75490096eccf6fe
+- name: github.com/mitchellh/mapstructure
+  version: d0303fe809921458f417bcf828397a65db30a7e4
 - name: github.com/pierrec/lz4
   version: 5a3d2245f97fc249850e7802e3c01fad02a1c316
 - name: github.com/pierrec/xxHash
