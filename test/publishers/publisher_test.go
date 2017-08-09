@@ -9,7 +9,7 @@ import (
 )
 
 func EmptyOptionsParser(string, []string, bool, string, bool, ...bool) (map[string]interface{}, error) {
-    return map[string]interface{}{}, nil
+	return map[string]interface{}{}, nil
 }
 
 func TestNewPublisherWithNoBrokers(t *testing.T) {

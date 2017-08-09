@@ -6,8 +6,8 @@ import (
 
 	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/controllers"
-	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/docopt/docopt-go"
+	"gopkg.in/gin-gonic/gin.v1"
 )
 
 func main() {

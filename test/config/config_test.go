@@ -8,7 +8,7 @@ import (
 )
 
 func EmptyOptionsParser(string, []string, bool, string, bool, ...bool) (map[string]interface{}, error) {
-    return map[string]interface{}{}, nil
+	return map[string]interface{}{}, nil
 }
 
 func TestConfigInstantiation(t *testing.T) {
@@ -22,7 +22,7 @@ func TestLoadDefaultConfig(t *testing.T) {
 
 	err := config.Load(EmptyOptionsParser)
 
-    // Now verify expectations
-    assert.Nil(t, err)
+	// Now verify expectations
+	assert.Nil(t, err)
 	assert.Equal(t, []string{"localhost:9092"}, config.BrokerAddresses, "default broker address check")
 }
