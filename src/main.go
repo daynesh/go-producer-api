@@ -6,20 +6,20 @@ import (
 
 	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/controllers"
+	"github.com/docopt/docopt-go"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
 func main() {
-	fmt.Println("Starting go-producer-api")
-
 	// Load config values
 	var config = &config.Manager{}
-	err := config.Load()
+	err := config.Load(docopt.Parse)
 	if err != nil {
 		// @todo Move to using a real logger with support for log levels
-		fmt.Println("Error loading configs")
+		fmt.Printf("Error loading configs: %s\n", err)
 		os.Exit(1)
 	}
+	fmt.Println("Starting go-producer-api")
 
 	// Instantiate an Engine instance
 	router := gin.Default()
