@@ -8,10 +8,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func EmptyOptionsParser(string, []string, bool, string, bool, ...bool) (map[string]interface{}, error) {
+    return map[string]interface{}{}, nil
+}
+
 func TestNewPublisherWithNoBrokers(t *testing.T) {
 	var err error
 	var config = &config.Manager{}
-	config.Load()
+	config.Load(EmptyOptionsParser)
 
 	// Actual test
 	_, err = publishers.NewPublisher(config)

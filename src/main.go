@@ -7,12 +7,13 @@ import (
 	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/controllers"
 	"gopkg.in/gin-gonic/gin.v1"
+	"github.com/docopt/docopt-go"
 )
 
 func main() {
 	// Load config values
 	var config = &config.Manager{}
-	err := config.Load()
+	err := config.Load(docopt.Parse)
 	if err != nil {
 		// @todo Move to using a real logger with support for log levels
 		fmt.Printf("Error loading configs: %s\n", err)

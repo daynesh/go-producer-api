@@ -1,20 +1,19 @@
 package config
 
 import (
-	"strings"
 	"errors"
-	"path"
 	"os"
+	"path"
+	"strings"
 
-	"github.com/docopt/docopt-go"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/mitchellh/mapstructure"
 )
 
 // Manager contains all config params
 type Manager struct {
-	BrokerAddresses []string    `envconfig:"BROKER_ADDRESSES" default:"localhost:9092"`
-	LogLevel        string      `envconfig:"LOG_LEVEL" default:"info" mapstructure:"--log-level"`
+	BrokerAddresses []string `envconfig:"BROKER_ADDRESSES" default:"localhost:9092"`
+	LogLevel        string   `envconfig:"LOG_LEVEL" default:"info" mapstructure:"--log-level"`
 }
 
 // Constant definitions
@@ -22,6 +21,9 @@ const (
 	ApplicationTitle = "Producer API"
 	EnvConfigPrefix  = "PRODUCERAPI"
 )
+
+// Used for dependency injecting the docopt.Parse() logic
+type OptionsParse func(string, []string, bool, string, bool, ...bool) (map[string]interface{}, error)
 
 // Usage information for specifying config data
 func getUsage() string {
@@ -60,7 +62,7 @@ func decodeArrayOfStrings(optionsMap map[string]interface{}, key string, destina
 }
 
 // Load configuration values
-func (c *Manager) Load() error {
+func (c *Manager) Load(optionsParse OptionsParse) error {
 	// Now override default values with any env values
 	err := envconfig.Process(EnvConfigPrefix, c)
 	if err != nil {
@@ -68,7 +70,7 @@ func (c *Manager) Load() error {
 	}
 
 	// Finally, attempt to override with any specified CLI options
-	arguments, err := docopt.Parse(getUsage(), nil, true, ApplicationTitle, false)
+	arguments, err := optionsParse(getUsage(), nil, true, ApplicationTitle, false)
 	if err != nil {
 		return err
 	}
