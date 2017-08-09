@@ -22,7 +22,7 @@ const (
 	EnvConfigPrefix  = "PRODUCERAPI"
 )
 
-// Used for dependency injecting the docopt.Parse() logic
+// OptionsParse type is used for dependency injecting the docopt.Parse() logic
 type OptionsParse func(string, []string, bool, string, bool, ...bool) (map[string]interface{}, error)
 
 // Usage information for specifying config data
@@ -47,7 +47,7 @@ func decodeArrayOfStrings(optionsMap map[string]interface{}, key string, destina
 	if exists && value != nil {
 		// Type assert to string
 		input, found := optionsMap[key].(string)
-		if found == false {
+		if !found {
 			return errors.New("Specified option " + key + " could not be converted to a string")
 		}
 
@@ -83,9 +83,6 @@ func (c *Manager) Load(optionsParse OptionsParse) error {
 	// See here: https://github.com/mitchellh/mapstructure/issues/91
 	// So instead we must decode string arrays manually here
 	err = decodeArrayOfStrings(arguments, "--broker-addresses", &c.BrokerAddresses)
-	if err != nil {
-		return err
-	}
 
-	return nil
+	return err
 }
