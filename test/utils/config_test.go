@@ -1,9 +1,9 @@
-package config_test
+package utils_test
 
 import (
 	"testing"
 
-	"github.com/daynesh/go-producer-api/src/config"
+	"github.com/daynesh/go-producer-api/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -18,13 +18,13 @@ func OptionsParserWithMultipleBrokerAddresses(string, []string, bool, string, bo
 }
 
 func TestConfigInstantiation(t *testing.T) {
-	var config = &config.Manager{}
+	var config = &utils.Config{}
 
 	assert.Equal(t, 0, len(config.BrokerAddresses))
 }
 
 func TestLoadDefaultConfig(t *testing.T) {
-	var config = &config.Manager{}
+	var config = &utils.Config{}
 
 	err := config.Load(EmptyOptionsParser)
 
@@ -34,7 +34,7 @@ func TestLoadDefaultConfig(t *testing.T) {
 }
 
 func TestLoadArrayOfBrokerAddresses(t *testing.T) {
-	var config = &config.Manager{}
+	var config = &utils.Config{}
 
 	err := config.Load(OptionsParserWithMultipleBrokerAddresses)
 

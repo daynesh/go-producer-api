@@ -13,3 +13,5 @@ import:
 - package: github.com/docopt/docopt-go
   version: ^0.6.2
 - package: github.com/mitchellh/mapstructure
+- package: github.com/sirupsen/logrus
+  version: ^1.0.2

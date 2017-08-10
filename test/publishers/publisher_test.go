@@ -3,8 +3,8 @@ package publisher_test
 import (
 	"testing"
 
-	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/publishers"
+	"github.com/daynesh/go-producer-api/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -14,7 +14,7 @@ func EmptyOptionsParser(string, []string, bool, string, bool, ...bool) (map[stri
 
 func TestNewPublisherWithNoBrokers(t *testing.T) {
 	var err error
-	var config = &config.Manager{}
+	var config = &utils.Config{}
 	config.Load(EmptyOptionsParser)
 
 	// Actual test

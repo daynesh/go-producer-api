@@ -1,5 +1,5 @@
-hash: d43fb314d87fa58e671bfc95d4a89afbfb5d502cdfa89c8592a8ea8b574860b6
-updated: 2017-08-08T12:48:43.069825725-04:00
+hash: c611c6570fb2ae5d9a51068bdf1332135935307b20750465dfabe7057191ddf1
+updated: 2017-08-09T12:48:03.096005675-04:00
 imports:
 - name: github.com/davecgh/go-spew
   version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
@@ -44,6 +44,8 @@ imports:
   - xxHash32
 - name: github.com/rcrowley/go-metrics
   version: 1f30fe9094a513ce4c700b9a54458bbb0c96996c
+- name: github.com/sirupsen/logrus
+  version: a3f95b5c423586578a4e099b11a46c2479628cac
 - name: github.com/stretchr/testify
   version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
   subpackages:

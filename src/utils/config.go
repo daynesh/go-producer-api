@@ -1,4 +1,4 @@
-package config
+package utils
 
 import (
 	"errors"
@@ -10,8 +10,8 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
-// Manager contains all config params
-type Manager struct {
+// Config contains all config params
+type Config struct {
 	BrokerAddresses []string `envconfig:"BROKER_ADDRESSES" default:"localhost:9092"`
 	LogLevel        string   `envconfig:"LOG_LEVEL" default:"info" mapstructure:"--log-level"`
 }
@@ -62,7 +62,7 @@ func decodeArrayOfStrings(optionsMap map[string]interface{}, key string, destina
 }
 
 // Load configuration values
-func (c *Manager) Load(optionsParse OptionsParse) error {
+func (c *Config) Load(optionsParse OptionsParse) error {
 	// Now override default values with any env values
 	err := envconfig.Process(EnvConfigPrefix, c)
 	if err != nil {
