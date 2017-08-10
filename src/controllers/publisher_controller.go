@@ -3,9 +3,9 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/daynesh/go-producer-api/src/config"
 	"github.com/daynesh/go-producer-api/src/publishers"
 	"github.com/daynesh/go-producer-api/src/requests"
+	"github.com/daynesh/go-producer-api/src/utils"
 	"github.com/gin-gonic/gin/binding"
 	"gopkg.in/gin-gonic/gin.v1"
 )
@@ -13,12 +13,12 @@ import (
 // PublishController includes config params, a publisher and this
 // controllers associated handlers
 type PublishController struct {
-	Config    *config.Manager
+	Config    *utils.Config
 	Publisher *publishers.Publisher
 }
 
 // GetPublishController returns a new PublishController
-func GetPublishController(config *config.Manager) *PublishController {
+func GetPublishController(config *utils.Config) *PublishController {
 	return &PublishController{Config: config}
 }
 
