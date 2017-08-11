@@ -6,6 +6,7 @@ import (
 	"github.com/daynesh/go-producer-api/src/publishers"
 	"github.com/daynesh/go-producer-api/src/requests"
 	"github.com/daynesh/go-producer-api/src/utils"
+
 	"github.com/gin-gonic/gin/binding"
 	"gopkg.in/gin-gonic/gin.v1"
 )

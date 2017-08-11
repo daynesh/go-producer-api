@@ -7,6 +7,7 @@ import (
 	"github.com/daynesh/go-producer-api/src/controllers"
 	"github.com/daynesh/go-producer-api/src/utils"
 	"github.com/docopt/docopt-go"
+	log "github.com/sirupsen/logrus"
 	"gopkg.in/gin-gonic/gin.v1"
 )
 
@@ -28,7 +29,7 @@ func main() {
 	}
 
 	// First real log output
-	utils.Logger.Info("Starting " + utils.ApplicationTitle)
+	log.Info("Starting " + utils.ApplicationTitle)
 
 	// Instantiate an Engine instance
 	router := gin.Default()
@@ -43,6 +44,6 @@ func main() {
 
 	err = router.Run()
 	if err != nil {
-		fmt.Println("Error executing router")
+		log.Fatal("Error executing router")
 	}
 }
