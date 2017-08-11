@@ -2,10 +2,11 @@ package publishers
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/daynesh/go-producer-api/src/requests"
 	"github.com/daynesh/go-producer-api/src/utils"
+
+	log "github.com/sirupsen/logrus"
 	"gopkg.in/Shopify/sarama.v1"
 )
 
@@ -34,7 +35,7 @@ func NewPublisher(config *utils.Config) (*Publisher, error) {
 // Handle publish errors from producer's error output channel
 func (p *Publisher) handleAsyncErrors() {
 	for err := range p.producer.Errors() {
-		fmt.Println("Publish error detected: ", err)
+		log.Error("Publish error detected: ", err)
 	}
 }
 
