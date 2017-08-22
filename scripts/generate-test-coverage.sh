@@ -22,7 +22,7 @@ generate_cover_data() {
 
     for pkg in "$@"; do
         f="$workdir/$(echo $pkg | tr / -).cover"
-        go test -covermode="$mode" -coverprofile="$f" -coverpkg=./src/... "$pkg"
+        env GOPATH=`pwd`/vendor:`pwd` go test -covermode="$mode" -coverprofile="$f" -coverpkg=app/... "$pkg"
     done
 
     echo "mode: $mode" >"$profile"
@@ -30,7 +30,7 @@ generate_cover_data() {
 }
 
 show_cover_report() {
-    go tool cover -${1}="$profile"
+    env GOPATH=`pwd` go tool cover -${1}="$profile"
 }
 
 push_to_coveralls() {
@@ -45,7 +45,7 @@ push_to_codecov() {
     curl -s https://codecov.io/bash | bash -s
 }
 
-generate_cover_data $(go list ./... | grep -v /vendor/)
+generate_cover_data $(env GOPATH=`pwd` go list ./src/...)
 show_cover_report func
 case "$1" in
 "")

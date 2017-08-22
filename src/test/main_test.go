@@ -1,11 +1,11 @@
-package main_test
+package test
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
-	"github.com/daynesh/go-producer-api/src/controllers"
+	"app/controllers"
 
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/gin-gonic/gin.v1"

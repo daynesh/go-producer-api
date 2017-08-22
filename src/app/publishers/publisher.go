@@ -3,8 +3,8 @@ package publishers
 import (
 	"encoding/json"
 
-	"github.com/daynesh/go-producer-api/src/requests"
-	"github.com/daynesh/go-producer-api/src/utils"
+	"app/requests"
+	"app/utils"
 
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/Shopify/sarama.v1"

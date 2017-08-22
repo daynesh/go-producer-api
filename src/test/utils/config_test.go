@@ -1,9 +1,9 @@
-package utils_test
+package utils
 
 import (
 	"testing"
 
-	"github.com/daynesh/go-producer-api/src/utils"
+	"app/utils"
 	"github.com/stretchr/testify/assert"
 )
 
