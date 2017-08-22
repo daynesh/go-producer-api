@@ -34,15 +34,9 @@ show_cover_report() {
 }
 
 push_to_coveralls() {
-    go get github.com/mattn/goveralls
+    env GOPATH=`pwd`/vendor go get github.com/mattn/goveralls
     echo "Pushing coverage statistics to coveralls.io"
-    goveralls -coverprofile="$profile"
-}
-
-push_to_codecov() {
-    echo "Pushing coverage statistics to codecov.io"
-    cp $profile coverage.txt
-    curl -s https://codecov.io/bash | bash -s
+    env GOPATH=`pwd` goveralls -coverprofile="$profile"
 }
 
 generate_cover_data $(env GOPATH=`pwd` go list ./src/...)
@@ -54,8 +48,6 @@ case "$1" in
     show_cover_report html ;;
 --coveralls)
     push_to_coveralls ;;
---codecov)
-    push_to_codecov ;;
 *)
     echo >&2 "error: invalid option: $1"; exit 1 ;;
 esac
