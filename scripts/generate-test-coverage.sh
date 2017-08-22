@@ -36,7 +36,7 @@ show_cover_report() {
 push_to_coveralls() {
     env GOPATH=`pwd`/vendor go get github.com/mattn/goveralls
     echo "Pushing coverage statistics to coveralls.io"
-    env GOPATH=`pwd` goveralls -coverprofile="$profile"
+    env GOPATH=`pwd` vendor/bin/goveralls -coverprofile="$profile"
 }
 
 generate_cover_data $(env GOPATH=`pwd` go list ./src/...)
