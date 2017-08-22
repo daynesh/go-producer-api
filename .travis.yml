@@ -7,13 +7,10 @@ install:
     - make install
 
 before_script:
-    - ./scripts/travis.gofmt.sh        # Fail if .go file hasn't been formatted with gofmt
-    - ./scripts/travis.govet.sh        # go vet source code
-    - ./scripts/travis.gometalint.sh   # gometalint all source code
+    - make lintchecks
 
 script:
     - make tests                        # Runs unit tests
 
 after_success:
-    - ./scripts/generate-test-coverage.sh --codecov
     - ./scripts/generate-test-coverage.sh --coveralls

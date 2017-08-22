@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/daynesh/go-producer-api/src/controllers"
-	"github.com/daynesh/go-producer-api/src/utils"
+	"app/controllers"
+	"app/utils"
+
 	"github.com/docopt/docopt-go"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/gin-gonic/gin.v1"

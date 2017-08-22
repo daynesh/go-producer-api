@@ -1,10 +1,11 @@
-package publisher_test
+package publishers
 
 import (
 	"testing"
 
-	"github.com/daynesh/go-producer-api/src/publishers"
-	"github.com/daynesh/go-producer-api/src/utils"
+	"app/publishers"
+	"app/utils"
+
 	"github.com/stretchr/testify/assert"
 )
 

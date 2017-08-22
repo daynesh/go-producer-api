@@ -22,7 +22,7 @@ generate_cover_data() {
 
     for pkg in "$@"; do
         f="$workdir/$(echo $pkg | tr / -).cover"
-        go test -covermode="$mode" -coverprofile="$f" -coverpkg=./src/... "$pkg"
+        env GOPATH=`pwd`/vendor:`pwd` go test -covermode="$mode" -coverprofile="$f" -coverpkg=app/... "$pkg"
     done
 
     echo "mode: $mode" >"$profile"
@@ -30,22 +30,16 @@ generate_cover_data() {
 }
 
 show_cover_report() {
-    go tool cover -${1}="$profile"
+    env GOPATH=`pwd` go tool cover -${1}="$profile"
 }
 
 push_to_coveralls() {
-    go get github.com/mattn/goveralls
+    env GOPATH=`pwd`/vendor go get github.com/mattn/goveralls
     echo "Pushing coverage statistics to coveralls.io"
-    goveralls -coverprofile="$profile"
+    env GOPATH=`pwd` vendor/bin/goveralls -coverprofile="$profile"
 }
 
-push_to_codecov() {
-    echo "Pushing coverage statistics to codecov.io"
-    cp $profile coverage.txt
-    curl -s https://codecov.io/bash | bash -s
-}
-
-generate_cover_data $(go list ./... | grep -v /vendor/)
+generate_cover_data $(env GOPATH=`pwd` go list ./src/...)
 show_cover_report func
 case "$1" in
 "")
@@ -54,8 +48,6 @@ case "$1" in
     show_cover_report html ;;
 --coveralls)
     push_to_coveralls ;;
---codecov)
-    push_to_codecov ;;
 *)
     echo >&2 "error: invalid option: $1"; exit 1 ;;
 esac
