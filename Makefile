@@ -1,22 +1,27 @@
 export GOPATH:=$(CURDIR)/vendor:$(CURDIR)
 
-GLIDE_EXE := $(GOPATH)/bin/glide
-APPNAME := $(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
+ifndef JOB_NAME
+JOB_NAME := $(notdir $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
+endif
+APPNAME := $(JOB_NAME)
+BUILD_DIR := $(APPNAME)-$(BUILD_NUMBER)
+BUILD_TARBALL := $(APPNAME)-$(BUILD_NUMBER).tar.bz2
 
 default: install build
 
 .PHONY: clean
 clean:
-	rm -rf vendor
+	rm -rf vendor .glide
 	rm -f $(APPNAME)
 
 .PHONY: build
 build:
 	@go build -o $(APPNAME) src/app/main.go
+	@go build -o $(APPNAME) -ldflags "-X app/bootstrap.BuildNumber=$(BUILD_NUMBER)" src/app/main.go
 
 .PHONY: install
 install: clean glide
-	@env GOPATH=`pwd` vendor/bin/glide install
+	@env GOPATH=`pwd` .glide/bin/glide install
 
 	@# The following ensures that imports will resolve packages located in ./vendor/src
 	@mv vendor vendor.tmp
@@ -25,7 +30,7 @@ install: clean glide
 
 .PHONY: glide
 glide:
-	@env GOPATH=`pwd`/vendor go get github.com/Masterminds/glide
+	@env GOPATH=`pwd`/.glide go get github.com/Masterminds/glide
 
 .PHONY: tests
 tests:
@@ -37,8 +42,12 @@ testcoverage:
 
 .PHONY: lintchecks
 lintchecks:
-	./scripts/travis.gofmt.sh
-	./scripts/travis.govet.sh
-	./scripts/travis.gometalint.sh
+	./scripts/lintchecks.sh
+
+.PHONY: dist
+dist: install build
+	rm -f build/$(BUILD_TARBALL)
+	mkdir -p build/$(BUILD_DIR) && cp $(APPNAME) build/$(BUILD_DIR)/
+	tar -C ./build -cjf build/$(BUILD_TARBALL) $(BUILD_DIR)
 
 .SILENT: clean

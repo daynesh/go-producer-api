@@ -16,7 +16,8 @@ func EmptyOptionsParser(string, []string, bool, string, bool, ...bool) (map[stri
 func TestNewPublisherWithNoBrokers(t *testing.T) {
 	var err error
 	var config = &utils.Config{}
-	config.Load(EmptyOptionsParser)
+	err = config.Load(EmptyOptionsParser)
+	assert.Equal(t, err, nil)
 
 	// Actual test
 	_, err = publishers.NewPublisher(config)
