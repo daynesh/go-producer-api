@@ -1,0 +1,5 @@
+{
+    "Disable": ["gotype"],
+    "Deadline": "600s",
+    "Vendor": true
+}
