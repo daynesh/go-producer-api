@@ -9,6 +9,10 @@ install:
 before_script:
     - make lintchecks
 
+notifications:
+  webhooks:
+    - https://coveralls.io/webhook?repo_token=COVERALLS_REPO_TOKEN
+
 script:
     - make tests                        # Runs unit tests
 
